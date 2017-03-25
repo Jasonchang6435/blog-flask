@@ -32,14 +32,6 @@ class ModelMixin(object):
         return m
 
     @classmethod
-    def update(cls, model_id, form):
-        ms = session.query(cls).filter_by(id=model_id)
-        for m in ms:
-            m.update(form)
-            m.save()
-        return ms
-
-    @classmethod
     def delete(cls, model_id):
         ms = session.query(cls).filter_by(id=model_id)
         for m in ms:
@@ -57,6 +49,12 @@ class ModelMixin(object):
         return m
 
     @classmethod
+    def update(cls, model_id, form):
+        m = session.query(cls).filter_by(model_id).first()
+        m.update(form)
+        return m
+
+    @classmethod
     def retrieve_all(cls, **kwargs):
         ms = session.query(cls).filter_by(**kwargs).all()
         return ms
@@ -68,12 +66,9 @@ class ModelMixin(object):
 
     def save(self):
         session.add(self)
-        session.commit()
-        session.close()
 
     def remove(self):
         session.delete(self)
-        session.commit()
         # 逻辑删除
         # self.deleted = True
         # self.save()
@@ -85,7 +80,7 @@ class ModelMixin(object):
 
 
 def initialize_db():
-    from models.blog import Blog
+    from models.article import Article
     from models.user import User
     from models.comment import Comment
     session.remove()

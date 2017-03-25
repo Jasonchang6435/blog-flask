@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>半夜集</title>
+    <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="//cdn.bootcss.com/remarkable/1.7.1/remarkable.js"></script>
+    <script src="../../static/js/iv-jquery.js"></script>
+    <script src="../../static/article/js/api-article.js"></script>
+    <script src="../../static/article/js/article.js"></script>
+</head>
+<body>
+<div id="id-article-container"
+     data-id="{{ m.id }}"
+     data-source="{{ url_for('api.api_article', article_id=m.id) }}">
+</div>
+</body>
+</html>

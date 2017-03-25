@@ -2,8 +2,8 @@ from . import *
 
 
 # 定义User对象:
-class Blog(Base, ModelMixin):
-    __tablename__ = 'blog'
+class Article(Base, ModelMixin):
+    __tablename__ = 'article'
 
     id = Column(Integer, primary_key=True)
     title = Column(String(50))

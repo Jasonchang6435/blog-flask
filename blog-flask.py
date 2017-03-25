@@ -1,5 +1,11 @@
 from flask import Flask
 from models import *
+from routes import *
+from models.article import Article
+from routes.user import main as routes_user
+from routes.article import main as routes_blog
+from routes.api import main as routes_api
+
 
 app = Flask(__name__)
 
@@ -8,10 +14,9 @@ def register_routes(app):
     """
     在这个函数里面 import 并注册蓝图
     """
-    from routes.user import main as routes_user
-    from routes.blog import main as routes_blog
-    app.register_blueprint(routes_user, url_prefix='/user/')
-    app.register_blueprint(routes_blog, url_prefix='/blog/')
+    app.register_blueprint(routes_user, url_prefix='/user')
+    app.register_blueprint(routes_blog, url_prefix='/article')
+    app.register_blueprint(routes_api, url_prefix='/api')
 
 
 def configured_app():
@@ -23,7 +28,14 @@ def configured_app():
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return redirect(url_for('.articles'))
+
+
+@app.route('/articles', methods=['GET'])
+def articles():
+    ms = Article.all()
+    log('debug ms', ms)
+    return render_template('article/index.html', ms=ms)
 
 
 if __name__ == '__main__':
