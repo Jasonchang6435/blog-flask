@@ -26,14 +26,14 @@ session = scoped_session(sessionmaker())
 
 class ModelMixin(object):
     @classmethod
-    def new(cls, form):
+    def create(cls, form):
         m = cls(**form)
-        m.save()
+        session.add(m)
         return m
 
     @classmethod
-    def delete(cls, model_id):
-        ms = session.query(cls).filter_by(id=model_id)
+    def delete(cls, **kwargs):
+        ms = session.query(cls).filter_by(**kwargs)
         for m in ms:
             session.remove(m)
         return ms
@@ -64,8 +64,6 @@ class ModelMixin(object):
         properties = ('{} = {}'.format(k, v) for k, v in self.__dict__.items())
         return '<{}: \n  {}\n>'.format(class_name, '\n  '.join(properties))
 
-    def save(self):
-        session.add(self)
 
     def remove(self):
         session.delete(self)

@@ -33,8 +33,7 @@ def hello_world():
 
 @app.route('/articles', methods=['GET'])
 def articles():
-    ms = Article.all()
-    log('debug ms', ms)
+    ms = Article.retrieve_all()
     return render_template('article/index.html', ms=ms)
 
 

@@ -17,3 +17,13 @@ def api_article(article_id):
         return json.dumps(d, ensure_ascii=False)
     else:
         abort(404)
+
+
+@main.route('/articles', methods=['GET'])
+def api_articles():
+    ms = Article.all()
+    d = dict(
+        data=[m.column_dict() for m in ms],
+        success=True,
+    )
+    return json.dumps(d, ensure_ascii=False)
