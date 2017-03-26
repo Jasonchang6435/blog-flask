@@ -2,6 +2,8 @@ from . import *
 from sqlalchemy import Column, String, Text, Integer
 
 
+Base = declarative_base()
+
 # 定义User对象:
 class Comment(Base, ModelMixin):
     __tablename__ = 'comment'

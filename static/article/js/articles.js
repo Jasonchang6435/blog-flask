@@ -14,9 +14,9 @@ var templateCellArticle = function () {
     var s = `
         <div id="id-article-{{ t.id }}" class="article-cell">
             <div>{{ t.title }}</div>
-            <div>{{ t.ct }}</div>
+            <div>{{ t.ct | formattime }}</div>
             <div>{{ t.content }}</div>
-        </div>`
+        </div>`;
     return s
 };
 
@@ -30,16 +30,14 @@ var nunjucksEnvironment = function () {
     return env
 };
 
-// 文章cell模板
-var templateCell
 // 自动获取数据并生成页面
 var loadArticles = function () {
     var env = nunjucksEnvironment();
-    const c = $('#id-articles-container');
-    const source = c.data('source');
-    const template = eval(c.data('template'))();
+    const self = $('#id-articles-container');
+    const source = self.data('source');
+    const template = eval(self.data('template'))();
     log('debug template', template);
-    const key = c.data('templateKey');
+    const key = self.data('templateKey');
     log('info source template key', source, template, key);
     api.get(source, function (r) {
         log('question list', r, r.data.length);
@@ -53,9 +51,9 @@ var loadArticles = function () {
                 var s = env.renderString(template, args);
                 cells.push(s)
             }
-            log('debug cells', cells);
+            // log('debug cells', cells);
             var str = cells.join('');
-            c.html(s)
+            self.html(s)
         }
     })
 };

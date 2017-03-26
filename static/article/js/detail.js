@@ -44,7 +44,7 @@ var loadArticle = function () {
     api.get(source, function (r) {
         log('article content', r , r.data);
         if(r.success) {
-            var t = articleContentTemplate(r.data)
+            var t = articleContentTemplate(r.data);
             $('#id-article-container').append(t)
         }
     })

@@ -1,6 +1,9 @@
 from . import *
 
 
+Base = declarative_base()
+
+
 # 定义User对象:
 class User(Base, ModelMixin):
     __tablename__ = 'user'

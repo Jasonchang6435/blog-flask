@@ -1,6 +1,6 @@
 import time
-from sqlalchemy import create_engine, Column, String, Integer, Text
-from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy import create_engine, Column, String, Integer, Text, Table, ForeignKey
+from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -14,7 +14,7 @@ def log(*args, **kwargs):
 
 
 # 创建对象的基类:
-Base = declarative_base()
+# Base = declarative_base()
 # 初始化数据库连接:
 SQLITE_CONFIG = 'sqlite:////Users/xiongchui/blog-flask/blog-flask.sqlite3'
 engine = create_engine(SQLITE_CONFIG)
@@ -90,4 +90,5 @@ def create_db():
     initialize_db()
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
+
 
