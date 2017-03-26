@@ -33,6 +33,6 @@ class Article(Base, ModelMixin):
     title = Column(String(50))
     overview = Column(Text)
     author_id = Column(Integer)
-    ct = Column(Integer)
-    ut = Column(Integer)
+    ct = Column(Integer, default=timestamp())
+    ut = Column(Integer, default=timestamp())
     content = Column(Text)

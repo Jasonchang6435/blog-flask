@@ -4,6 +4,10 @@ from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
 
+def timestamp():
+    return int(time.time())
+
+
 def log(*args, **kwargs):
     # time.time() 返回 unixtime
     # unixtime 格式转换

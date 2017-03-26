@@ -15,7 +15,7 @@ var templateCellArticle = function () {
         <div id="id-article-{{ t.id }}" class="article-cell">
             <div>{{ t.title }}</div>
             <div>{{ t.ct | formattime }}</div>
-            <div>{{ t.content }}</div>
+            <div>{{ t.overview }}</div>
         </div>`;
     return s
 };

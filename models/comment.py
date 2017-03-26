@@ -12,7 +12,7 @@ class Comment(Base, ModelMixin):
     content = Column(Text)
     blog_id = Column(Integer)
     author_id = Column(Integer)
-
+    ct = Column(Integer, default=timestamp())
 
 
 
