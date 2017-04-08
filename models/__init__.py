@@ -33,6 +33,7 @@ class ModelMixin(object):
     def create(cls, form):
         m = cls(**form)
         session.add(m)
+        session.commit()
         return m
 
     @classmethod

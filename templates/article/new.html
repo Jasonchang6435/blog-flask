@@ -7,11 +7,17 @@
     <link rel="stylesheet" href="../../static/article/css/editor.css">
     <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script src="//cdn.bootcss.com/remarkable/1.7.1/remarkable.js"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
     <script src="../../static/js/iv-jquery.js"></script>
+    <script src="../../static/article/js/api-article.js"></script>
+    <script src="../../static/article/js/new.js"></script>
 </head>
 
 <body>
     <div id="id-editor-container">
+        <input id="id-input-title" type="text">
+        <textarea id="id-editor-overview"></textarea>
+        <button id="id-btn-submit">submit</button>
         <textarea id="id-editor-content">输入内容</textarea>
         <div id="id-editor-show">todo</div>
     </div>

@@ -15,3 +15,8 @@ def detail(article_id):
         return render_template('article/detail.html', m=m)
     else:
         return abort(404)
+
+
+@main.route('/new', methods=['GET'])
+def new():
+    return render_template('article/new.html')

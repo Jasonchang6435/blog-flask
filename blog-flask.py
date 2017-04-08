@@ -1,7 +1,7 @@
 from flask import Flask
 from models import *
 from routes import *
-from models.article import Article
+# from models.article import Article
 from routes.user import main as routes_user
 from routes.article import main as routes_blog
 from routes.api import main as routes_api

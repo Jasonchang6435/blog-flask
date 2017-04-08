@@ -1,4 +1,5 @@
 from . import *
+from flask import url_for
 
 
 Base = declarative_base()
@@ -32,7 +33,14 @@ class Article(Base, ModelMixin):
     id = Column(Integer, primary_key=True)
     title = Column(String(50))
     overview = Column(Text)
-    author_id = Column(Integer)
+    author_id = Column(Integer, default=1)
     ct = Column(Integer, default=timestamp())
     ut = Column(Integer, default=timestamp())
     content = Column(Text)
+
+    def column_dict(self):
+        d = dict(self.__dict__)
+        d.pop('_sa_instance_state')
+        d['href'] = url_for('article.detail', article_id=self.id)
+        return d
+

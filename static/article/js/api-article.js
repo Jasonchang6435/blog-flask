@@ -1,4 +1,4 @@
-api.retrieveArticle = function (id, responseCallback) {
-    let url = `/article/${id}`;
-    api.get(url, id, responseCallback)
-};
+api.createArticle = function (form, responseCallback) {
+    var url = '/api/article/new'
+    api.post(url, form, responseCallback, responseCallback)
+}
