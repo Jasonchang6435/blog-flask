@@ -1,14 +1,14 @@
-Date.prototype.Format = function () {
-    var add0 = function (m) {
+Date.prototype.format = function () {
+    let add0 = function (m) {
         return m < 10 ? `0${m}` : m
     };
-    var time = this;
-    var y = time.getFullYear();
-    var m = time.getMonth() + 1;
-    var d = time.getDate();
-    var h = time.getHours();
-    var mm = time.getMinutes();
-    var s = time.getSeconds();
+    let time = this;
+    let y = time.getFullYear();
+    let m = time.getMonth() + 1;
+    let d = time.getDate();
+    let h = time.getHours();
+    let mm = time.getMinutes();
+    let s = time.getSeconds();
     return `${y}-${add0(m)}-${add0(d)} ${add0(h)}:${add0(mm)}:${add0(s)}`;
 };
 
@@ -32,7 +32,7 @@ Element.prototype.on = Element.prototype.addEventListener;
 
 
 const log = function () {
-    var t = new Date().Format();
+    let t = new Date().format();
     console.log.apply(console, [t, arguments])
 };
 
@@ -46,7 +46,7 @@ api.ajax = function (request) {
     //     url, 请求的路径, string
     //     data, 请求发送的数据, 如果是 GET 方法则没这个值, string
     //     callback, 响应回调, function
-    var r = new XMLHttpRequest();
+    let r = new XMLHttpRequest();
     r.open(request.method, request.url, true);
     if (request.XCSRFToken !== undefined) {
         r.setRequestHeader('X-CSRFToken', request.XCSRFToken)
@@ -68,7 +68,7 @@ api.ajax = function (request) {
 
 //  封装 get Ajax 请求
 api.get = function (url, response) {
-    var r = {
+    let r = {
         method: 'GET',
         url: url,
         data: '',
@@ -79,7 +79,7 @@ api.get = function (url, response) {
 
 // 封装 post Ajax 请求
 api.post = function (url, form, response) {
-    var r = {
+    let r = {
         method: 'POST',
         url: url,
         // XCSRFToken: Cookies.get('csrftoken'),

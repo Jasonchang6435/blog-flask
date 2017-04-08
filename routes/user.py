@@ -53,8 +53,3 @@ def change_password(user_id):
         href='/user/{}/profile'.format(u.id)
     )
     return json.dumps(r, ensure_ascii=False)
-
-
-
-
-
