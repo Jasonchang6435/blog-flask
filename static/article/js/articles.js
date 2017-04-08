@@ -13,7 +13,7 @@ var __main = function () {
 var templateCellArticle = function () {
     var s = `
         <div id="id-article-{{ t.id }}" class="article-cell">
-            <div>{{ t.title }}</div>
+            <a href="article/{{ t.id }}">{{ t.title }}</a>
             <div>{{ t.ct | formattime }}</div>
             <div>{{ t.overview }}</div>
         </div>`;
@@ -32,7 +32,7 @@ var nunjucksEnvironment = function () {
 
 // 自动获取数据并生成页面
 var loadArticles = function () {
-    var env = nunjucksEnvironment();
+    let env = nunjucksEnvironment();
     const self = $('#id-articles-container');
     const source = self.data('source');
     const template = eval(self.data('template'))();
@@ -42,18 +42,18 @@ var loadArticles = function () {
     api.get(source, function (r) {
         log('question list', r, r.data.length);
         if (r.success) {
-            var cells = [];
-            for (var i = 0; i < r.data.length; i++) {
-                var data = r.data[i];
-                var args = {};
+            let cells = [];
+            for (let i = 0; i < r.data.length; i++) {
+                let data = r.data[i];
+                let args = {};
                 args[key] = data;
                 log('debug data', data);
-                var s = env.renderString(template, args);
+                let s = env.renderString(template, args);
                 cells.push(s)
             }
             // log('debug cells', cells);
-            var str = cells.join('');
-            self.html(s)
+            let str = cells.join('');
+            self.html(str)
         }
     })
 };

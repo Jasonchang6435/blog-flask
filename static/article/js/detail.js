@@ -16,13 +16,13 @@ var __main = function () {
 };
 
 var htmlFromMarkdown = function (string) {
-    var md = new Remarkable()
-    s = md.render(string)
+    let md = new Remarkable();
+    s = md.render(string);
     return s
-}
+};
 
-var articleContentTemplate = function(m) {
-    var c = htmlFromMarkdown(m.content)
+var templateArticleContent = function(m) {
+    var c = htmlFromMarkdown(m.content);
     var s = `
     <div id="id-article-title" >
         ${m.title}
@@ -32,9 +32,9 @@ var articleContentTemplate = function(m) {
     </div>
     <div id="id-article-content">
         ${c}
-    </div>`
+    </div>`;
     return s
-}
+};
 
 var loadArticle = function () {
     const c = $('#id-article-container');
@@ -44,7 +44,7 @@ var loadArticle = function () {
     api.get(source, function (r) {
         log('article content', r , r.data);
         if(r.success) {
-            var t = articleContentTemplate(r.data);
+            let t = templateArticleContent(r.data);
             $('#id-article-container').append(t)
         }
     })

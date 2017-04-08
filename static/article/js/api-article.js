@@ -1,4 +1,4 @@
 api.retrieveArticle = function (id, responseCallback) {
-    var url = `/article/${id}`;
+    let url = `/article/${id}`;
     api.get(url, id, responseCallback)
 };
