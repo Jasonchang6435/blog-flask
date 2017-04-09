@@ -1,19 +1,19 @@
-Date.prototype.Format = function () {
-    var add0 = function (m) {
+Date.prototype.format = function () {
+    let add0 = function (m) {
         return m < 10 ? `0${m}` : m
     };
-    var time = this;
-    var y = time.getFullYear();
-    var m = time.getMonth() + 1;
-    var d = time.getDate();
-    var h = time.getHours();
-    var mm = time.getMinutes();
-    var s = time.getSeconds();
+    let time = this;
+    let y = time.getFullYear();
+    let m = time.getMonth() + 1;
+    let d = time.getDate();
+    let h = time.getHours();
+    let mm = time.getMinutes();
+    let s = time.getSeconds();
     return `${y}-${add0(m)}-${add0(d)} ${add0(h)}:${add0(mm)}:${add0(s)}`;
 };
 
 const log = function () {
-    var t = new Date().Format();
+    let t = new Date().format();
     console.log.apply(console, [t, arguments])
 };
 
@@ -49,12 +49,12 @@ api.ajax = function (url, method, form, success, error) {
 };
 
 api.get = function (url, responseCallback) {
-    var method = 'get';
-    var form = {}
+    let method = 'get';
+    let form = {};
     this.ajax(url, method, form, responseCallback, responseCallback);
 };
 
 api.post = function (url, form, responseCallback) {
-    var method = 'post';
+    let method = 'post';
     this.ajax(url, method, form, responseCallback, responseCallback);
 };

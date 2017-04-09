@@ -40,18 +40,15 @@ var loadArticles = function () {
     const key = self.data('templateKey');
     log('info source template key', source, template, key);
     api.get(source, function (r) {
-        log('question list', r, r.data.length);
         if (r.success) {
             let cells = [];
             for (let i = 0; i < r.data.length; i++) {
                 let data = r.data[i];
                 let args = {};
                 args[key] = data;
-                log('debug data', data);
                 let s = env.renderString(template, args);
                 cells.push(s)
             }
-            // log('debug cells', cells);
             let str = cells.join('');
             self.html(str)
         }

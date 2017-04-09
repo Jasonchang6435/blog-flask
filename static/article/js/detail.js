@@ -16,7 +16,6 @@ var __main = function () {
 };
 
 var htmlFromMarkdown = function (string) {
-    let md = new Remarkable();
     s = md.render(string);
     return s
 };

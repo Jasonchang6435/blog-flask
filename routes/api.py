@@ -1,6 +1,5 @@
 from routes import *
 from models.article import Article
-from routes import article as routes_article
 
 
 main = Blueprint('api', __name__)
@@ -24,6 +23,6 @@ def api_articles():
 
 @main.route('/article/new', methods=['POST'])
 def api_new():
-    g = request.get_json()
-    m = Article.create(g)
+    form = request.get_json()
+    m = Article.create(form)
     return success_response(data=m.column_dict())
