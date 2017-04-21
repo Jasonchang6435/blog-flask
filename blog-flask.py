@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, url_for
-from models import init_db, create_db
+from models.base import init_db, create_db
 from routes.user import main as routes_user
 from routes.article import main as routes_blog
 from routes.api import main as routes_api

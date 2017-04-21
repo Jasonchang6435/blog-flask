@@ -1,8 +1,11 @@
 from . import *
 from sqlalchemy import Column, String, Text, Integer
 import models.base as base
+import models.modelmixin as modelmixin
+
 
 Base = base.Base
+ModelMixin = modelmixin.ModelMixin
 
 
 # 定义User对象:

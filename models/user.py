@@ -1,9 +1,10 @@
 from . import *
 import models.base as base
+import models.modelmixin as modelmixin
 
 
 Base = base.Base
-
+ModelMixin = modelmixin.ModelMixin
 
 
 # 定义User对象:
