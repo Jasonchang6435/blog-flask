@@ -1,14 +1,12 @@
 from . import *
 from sqlalchemy import Column, String, Text, Integer
 import models.base as base
-import models.modelmixin as modelmixin
 
 
 Base = base.Base
-ModelMixin = modelmixin.ModelMixin
+ModelMixin = base.ModelMixin
 
 
-# 定义User对象:
 class Comment(Base, ModelMixin):
     __tablename__ = 'comment'
 

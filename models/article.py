@@ -1,13 +1,12 @@
 from . import *
 from flask import url_for
 import models.base as base
-import models.modelmixin as modelmixin
 
 
 Base = base.Base
-ModelMixin = modelmixin.ModelMixin
+ModelMixin = base.ModelMixin
 
-# 定义 多对多关系表
+
 article_tags_table = Table(
     'article_tags',
     Base.metadata,
@@ -16,7 +15,6 @@ article_tags_table = Table(
 )
 
 
-# 定义Tag 类
 class Tag(Base, ModelMixin):
     __tablename__ = 'tag'
 

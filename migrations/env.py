@@ -3,6 +3,7 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool, MetaData
 from logging.config import fileConfig
 
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -27,6 +28,7 @@ def combine_metadata(*args):
             t.tometadata(m)
     return m
 
+
 target_metadata = combine_metadata(article, comment, user)
 
 
@@ -34,8 +36,6 @@ target_metadata = combine_metadata(article, comment, user)
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-
-
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
 
