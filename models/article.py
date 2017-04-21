@@ -1,8 +1,8 @@
 from . import *
 from flask import url_for
+import models.base as base
 
-
-Base = declarative_base()
+Base = base.Base
 
 # 定义 多对多关系表
 article_tags_table = Table(

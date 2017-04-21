@@ -1,7 +1,5 @@
-from flask import Flask
-from models import *
-from routes import *
-# from models.article import Article
+from flask import Flask, redirect, render_template, url_for
+from models import init_db, create_db
 from routes.user import main as routes_user
 from routes.article import main as routes_blog
 from routes.api import main as routes_api
@@ -37,6 +35,6 @@ def articles():
 
 
 if __name__ == '__main__':
-    initialize_db()
+    init_db()
     app = configured_app()
     app.run(debug=True)

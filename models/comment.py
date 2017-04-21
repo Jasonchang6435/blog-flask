@@ -1,8 +1,9 @@
 from . import *
 from sqlalchemy import Column, String, Text, Integer
+import models.base as base
 
+Base = base.Base
 
-Base = declarative_base()
 
 # 定义User对象:
 class Comment(Base, ModelMixin):

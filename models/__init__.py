@@ -1,7 +1,8 @@
 import time
 from sqlalchemy import create_engine, Column, String, Integer, Text, Table, ForeignKey
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
-from sqlalchemy.ext.declarative import declarative_base
+import sys
+import os.path
 
 
 def timestamp():
@@ -9,19 +10,18 @@ def timestamp():
 
 
 def log(*args, **kwargs):
-    # time.time() 返回 unixtime
-    # unixtime 格式转换
     f = '%Y/%m/%d %H:%M:%S'
     value = time.localtime(int(time.time()))
     dt = time.strftime(f, value)
     print(dt, *args, **kwargs)
 
 
-# 创建对象的基类:
-# Base = declarative_base()
 # 初始化数据库连接:
-SQLITE_CONFIG = 'sqlite:////Users/xiongchui/blog-flask/blog-flask.sqlite3'
-engine = create_engine(SQLITE_CONFIG)
+# dir = os.path.dirname(os.path.abspath(__file___file__))
+# log(dir)
+# sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+SQLITE_CONFIG = 'sqlite:////Users/xiongchui/blog-flask/blog-flask的副本.sqlite3'
+engine = create_engine(SQLITE_CONFIG, echo=True)
 # 创建Session类型:
 session = scoped_session(sessionmaker())
 # # 创建session对象:
@@ -82,18 +82,18 @@ class ModelMixin(object):
         return d
 
 
-def initialize_db():
-    from models.article import Article
-    from models.user import User
-    from models.comment import Comment
+def init_db():
+    # from models.article import Article
+    # from models.user import User
+    # from models.comment import Comment
     session.remove()
     session.configure(bind=engine, autoflush=False, expire_on_commit=False)
     print('initialize db completed')
 
 
 def create_db():
-    initialize_db()
-    Base.metadata.drop_all(engine)
-    Base.metadata.create_all(engine)
+    init_db()
+    base.Base.metadata.drop_all(engine)
+    base.Base.metadata.create_all(engine)
 
 

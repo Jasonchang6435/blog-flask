@@ -1,7 +1,9 @@
 from . import *
+import models.base as base
 
 
-Base = declarative_base()
+Base = base.Base
+
 
 
 # 定义User对象:
