@@ -7,22 +7,18 @@ main = Blueprint('api', __name__)
 
 @main.route('/article/<int:article_id>', methods=['GET'])
 def api_article(article_id):
-    m = Article.retrieve(id=article_id)
-    if m is not None:
-        return success_response(data=m.column_dict())
-    else:
-        abort(404)
+    status, data, msgs = Article.retrieve(id=article_id)
+    return iv_json_response(status, data, msgs)
 
 
 @main.route('/articles', methods=['GET'])
 def api_articles():
-    ms = Article.all()
-    l = [m.column_dict() for m in ms]
-    return success_response(data=l)
+    status, data, msgs = Article.all()
+    return iv_json_response(status, data, msgs)
 
 
 @main.route('/article/new', methods=['POST'])
 def api_new():
     form = request.get_json()
-    m = Article.create(form)
-    return success_response(data=m.column_dict())
+    status, data, msgs = Article.create(form)
+    return iv_json_response(status, data, msgs)

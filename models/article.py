@@ -2,10 +2,8 @@ from . import *
 from flask import url_for
 import models.base as base
 
-
 Base = base.Base
 ModelMixin = base.ModelMixin
-
 
 article_tags_table = Table(
     'article_tags',

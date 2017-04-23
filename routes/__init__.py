@@ -20,12 +20,11 @@ def log(*args, **kwargs):
     print(dt, *args, **kwargs)
 
 
-def success_response(**kwargs):
-    kwargs['success'] = True
-    return json.dumps(kwargs, ensure_ascii=False)
-
-
-def error_response(err='未知错误', **kwargs):
-    kwargs['success'] = True
-    kwargs['err'] = err
-    return json.dumps(kwargs, ensure_ascii=False)
+def iv_json_response(status, data, msgs):
+    d = dict(
+        success=status,
+        data=data,
+        msgs=msgs,
+    )
+    r = json.dumps(d, ensure_ascii=False)
+    return r

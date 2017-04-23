@@ -9,9 +9,9 @@ Model = Article
 
 @main.route('/<int:article_id>', methods=['GET'])
 def detail(article_id):
-    m = Model.retrieve(id=article_id)
-    if m is not None:
-        return render_template('article/detail.html', m=m)
+    status, data, msgs = Model.retrieve(id=article_id)
+    if status:
+        return render_template('article/detail.html', m=data.get('article'))
     else:
         return abort(404)
 

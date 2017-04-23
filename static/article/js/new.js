@@ -11,7 +11,7 @@ const bindEvents = function() {
     bindEventClickSubmit()
 };
 
-var htmlFromMarkdown = function(string) {
+const htmlFromMarkdown = function(string) {
     let s = md.render(string);
     return s
 };
@@ -27,10 +27,10 @@ const bindEventShow = function() {
 
 const bindEventClickSubmit = function () {
     $('#id-btn-submit').on('click', function() {
-        var overview = $('#id-editor-overview').val();
-        var content = $('#id-editor-content').val();
-        var title = $('#id-input-title').val();
-        var form = {
+        let overview = $('#id-editor-overview').val();
+        let content = $('#id-editor-content').val();
+        let title = $('#id-input-title').val();
+        let form = {
             overview: overview,
             content: content,
             title: title
@@ -38,7 +38,7 @@ const bindEventClickSubmit = function () {
         api.createArticle(form, function (r) {
             if(r.success) {
                 alert('success');
-                location.href = r.data.href
+                location.href = r.data.article.href
             }
         })
     })

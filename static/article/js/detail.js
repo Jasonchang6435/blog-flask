@@ -2,27 +2,35 @@
  * Created by xiongchui on 2017/3/25.
  */
 
-// 绑定事件
-// var bindEvents = function () {
-//
-// };
-
 $(document).ready(function () {
-        __main()
-    });
+    __main()
+});
 
-var __main = function () {
+const __main = function () {
     loadArticle()
 };
 
-var htmlFromMarkdown = function (string) {
+const loadArticle = function () {
+    const c = $('#id-article-container');
+    const id = c.data('id');
+    const source = c.data('source');
+    api.get(source, function (r) {
+        if (r.success) {
+            m = r.data.article;
+            let t = templateArticleContent(m);
+            $('#id-article-container').append(t)
+        }
+    })
+};
+
+const htmlFromMarkdown = function (string) {
     s = md.render(string);
     return s
 };
 
-var templateArticleContent = function(m) {
-    var c = htmlFromMarkdown(m.content);
-    var s = `
+const templateArticleContent = function (m) {
+    let c = htmlFromMarkdown(m.content);
+    let s = `
     <div id="id-article-title" >
         ${m.title}
     </div>
@@ -33,18 +41,4 @@ var templateArticleContent = function(m) {
         ${c}
     </div>`;
     return s
-};
-
-var loadArticle = function () {
-    const c = $('#id-article-container');
-    const id = c.data('id');
-    const source = c.data('source');
-    log('info id source', id, source);
-    api.get(source, function (r) {
-        log('article content', r , r.data);
-        if(r.success) {
-            let t = templateArticleContent(r.data);
-            $('#id-article-container').append(t)
-        }
-    })
 };

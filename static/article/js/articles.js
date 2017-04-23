@@ -42,8 +42,9 @@ var loadArticles = function () {
     api.get(source, function (r) {
         if (r.success) {
             let cells = [];
-            for (let i = 0; i < r.data.length; i++) {
-                let data = r.data[i];
+            l = r.data.article;
+            for (i of l) {
+                let data = i;
                 let args = {};
                 args[key] = data;
                 let s = env.renderString(template, args);
