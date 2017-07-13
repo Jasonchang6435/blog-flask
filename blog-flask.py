@@ -4,7 +4,6 @@ from routes.user import main as routes_user
 from routes.article import main as routes_blog
 from routes.api import main as routes_api
 
-
 app = Flask(__name__)
 
 

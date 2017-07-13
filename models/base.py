@@ -1,11 +1,13 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import create_engine
-
+from utils import PROJECT_DIR
+import os.path
 
 Base = declarative_base()
-SQLITE_CONFIG = 'sqlite:////Users/xiongchui/blog-flask/blog-flask.sqlite3'
-engine = create_engine(SQLITE_CONFIG, echo=True)
+TASK_DB_URI = 'sqlite:///' + os.path.join(PROJECT_DIR, 'blog-flask.sqlite3')
+print(TASK_DB_URI)
+engine = create_engine(TASK_DB_URI, echo=True)
 session = scoped_session(sessionmaker())
 
 
@@ -16,7 +18,7 @@ class ModelMixin(object):
         m = cls(**form)
         session.add(m)
         session.commit()
-        status =True
+        status = True
         data[cls.name()] = m.column_dict()
         return status, data, msgs
 
@@ -86,6 +88,7 @@ class ModelMixin(object):
     def name(cls):
         return cls.__name__.lower()
 
+
 def init_db():
     session.remove()
     session.configure(bind=engine, autoflush=False, expire_on_commit=False)
@@ -100,4 +103,3 @@ def create_db():
 
 if __name__ == '__main__':
     create_db()
-
