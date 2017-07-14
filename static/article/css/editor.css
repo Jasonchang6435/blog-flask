@@ -5,7 +5,7 @@ html, body, #id-editor-container {
     color: #333;
 }
 
- #id-editor-content, #id-editor-container div {
+#id-editor-content, #id-editor-container div {
     display: inline-block;
     width: 49%;
     height: 100%;

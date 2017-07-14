@@ -36,4 +36,9 @@ def articles():
 if __name__ == '__main__':
     init_db()
     app = configured_app()
-    app.run(debug=True)
+    config = dict(
+        debug=True,
+        host='',
+        port=5000
+    )
+    app.run(**config)

@@ -2,23 +2,26 @@
  * Created by xiongchui on 2017/3/25.
  */
 
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded",function(){
+    //ready完成执行代码
     __main()
-});
+},false);
 
 const __main = function () {
     loadArticle()
 };
 
 const loadArticle = function () {
-    const c = $('#id-article-container');
-    const id = c.data('id');
-    const source = c.data('source');
+    const c = e('#id-article-container');
+    const id = c.dataset.id;
+    const source = c.dataset.source;
     api.get(source, function (r) {
-        if (r.success) {
-            m = r.data.article;
+        var d = JSON.parse(r);
+        if (d.success) {
+            m = d.data.article;
             let t = templateArticleContent(m);
-            $('#id-article-container').append(t)
+            var container = e('#id-article-container');
+            container.innerHTML = t
         }
     })
 };

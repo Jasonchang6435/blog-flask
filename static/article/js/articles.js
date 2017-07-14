@@ -2,9 +2,10 @@
  * Created by xiongchui on 2017/3/26.
  */
 
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded",function(){
+    //ready完成执行代码
     __main()
-});
+},false);
 
 var __main = function () {
     loadArticles()
@@ -33,16 +34,18 @@ var nunjucksEnvironment = function () {
 // 自动获取数据并生成页面
 var loadArticles = function () {
     let env = nunjucksEnvironment();
-    const self = $('#id-articles-container');
-    const source = self.data('source');
-    const template = eval(self.data('template'))();
+    const self = e('#id-articles-container');
+    log(self);
+    const source = self.dataset.source;
+    const template = eval(self.dataset.template)();
     log('debug template', template);
-    const key = self.data('templateKey');
+    const key = self.dataset.templateKey;
     log('info source template key', source, template, key);
     api.get(source, function (r) {
-        if (r.success) {
+        var d = JSON.parse(r);
+        if (d.success) {
             let cells = [];
-            l = r.data.article;
+            l = d.data.article;
             for (i of l) {
                 let data = i;
                 let args = {};
@@ -50,8 +53,10 @@ var loadArticles = function () {
                 let s = env.renderString(template, args);
                 cells.push(s)
             }
-            let str = cells.join('');
-            self.html(str)
+            var str = cells.join('');
+            log(str);
+            self.innerHTML = str;
+            log('finish')
         }
     })
 };
