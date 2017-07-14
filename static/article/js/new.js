@@ -1,6 +1,6 @@
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded",function(){
     __main()
-});
+},false);
 
 const __main = function() {
     bindEvents()
@@ -17,28 +17,29 @@ const htmlFromMarkdown = function(string) {
 };
 
 const bindEventShow = function() {
-    $d = $('#id-editor-content');
-    $d.on('keyup', function() {
-        let s = $d.val();
+    d = e('#id-editor-content');
+    d.on('keyup', function() {
+        let s = d.value;
         let t = htmlFromMarkdown(s);
-        $('#id-editor-show').html(t)
+        e('#id-editor-show').innerHTML = t
     })
 };
 
 const bindEventClickSubmit = function () {
-    $('#id-btn-submit').on('click', function() {
-        let overview = $('#id-editor-overview').val();
-        let content = $('#id-editor-content').val();
-        let title = $('#id-input-title').val();
+    e('#id-btn-submit').on('click', function() {
+        let overview = e('#id-editor-overview').value;
+        let content = e('#id-editor-content').value;
+        let title = e('#id-input-title').value;
         let form = {
             overview: overview,
             content: content,
             title: title
         };
         api.createArticle(form, function (r) {
-            if(r.success) {
+            var d = JSON.parse(r);
+            if(d.success) {
                 alert('success');
-                location.href = r.data.article.href
+                location.href = d.data.article.href
             }
         })
     })

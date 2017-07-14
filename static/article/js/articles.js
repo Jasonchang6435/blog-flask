@@ -3,7 +3,6 @@
  */
 
 document.addEventListener("DOMContentLoaded",function(){
-    //ready完成执行代码
     __main()
 },false);
 
